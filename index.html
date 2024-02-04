@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Violet's Analytics</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="text/javascript">
+      window._mfq = window._mfq || [];
+      (function () {
+        var mf = document.createElement("script");
+        mf.type = "text/javascript";
+        mf.defer = true;
+        mf.src =
+          "//cdn.mouseflow.com/projects/0982e665-7855-477a-90fc-3fb01f6d4c4d.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+      })();
+    </script>
+  </head>
+  <body>
+    <h1>Welcome to Violet's Shitty Analytics</h1>
+    <form id="analyticsForm">
+      <label for="email">Email:</label>
+      <input class="in-box" type="text" id="email" required /><br />
+      <br />
+
+      <label for="apiKey">API Key:</label>
+      <input class="in-box" type="text" id="apiKey" required /><br />
+      <br />
+
+      <label for="region">Region: US</label>
+      <label class="switch">
+        <input type="checkbox" id="regionToggle" checked />
+        <span class="slider"></span>
+      </label>
+      EU <br /><br />
+
+      <label for="websiteId">Website ID:</label>
+      <input class="in-box" type="text" id="websiteId" required /><br />
+      <br />
+
+      <label for="fromDate">Start Date:</label>
+      <input type="date" id="fromDate" required /><br />
+      <br />
+
+      <label for="toDate">End Date:</label>
+      <input type="date" id="toDate" required /><br /><br />
+      <label for="scriptSelector">Select Analytics Type:</label>
+      <select id="scriptSelector" onchange="yesnoCheck(this);">
+        <option value="clickError">Click Error Report</option>
+        <option value="topCitiesCountries">Top Cities and Countries</option>
+        <option value="loginStats">Login Stats</option>
+        <option value="referrerStats">Referrer Stats</option>
+        <option value="userCsv">User Roles CSV</option>
+        <option value="tagVar">Tag/Var General Stats</option>
+        <option value = "searchTag">Tag Search</option>
+        <option value = "searchVar">Variable Search DOES_NOT_WORK_YET</option>
+        <option value = "averageSessions">Average Sessions DOES_NOT_WORK_YET</option>
+        </select><br />
+      <br />
+
+      <div id="tag-search" style="display: none;">
+        <label for="tag">Enter tag name: </label> <input type="text" id="tag_s" name="tag_s" /><br /><br />
+    </div>
+    <div id="var-search" style="display: none;">
+      <label for="var">Enter variable name and value: </label> <input type="text" id="var_s_k" name="var_s_k" /><input type="text" id="var_s_v" name="var_s_v" /><br /><br />
+  </div>
+      <script>
+        function yesnoCheck(that) {
+      if (that.value == "searchTag") {
+          document.getElementById("tag-search").style.display = "block";
+          document.getElementById("var-search").style.display = "none";
+      }else if(that.value == "searchVar"){
+        document.getElementById("var-search").style.display = "block";
+        document.getElementById("tag-search").style.display = "none";
+      }else{
+        document.getElementById("tag-search").style.display = "none";
+        document.getElementById("var-search").style.display = "none";
+      }
+    }
+      </script>
+    
+    
+    <button type="button" class="startButt" onclick="runAnalytics()">
+        Start Processing
+      </button>
+    </form>
+
+    <div id="output"></div>
+  </div>
+  <script type="text/javascript" src="analytics.js"></script>
+
+  <script>
+ var grabit = document.querySelector('.startButt');
+grabit.addEventListener("click", function() {
+  window._mfq = window._mfq || [];
+    window._mfq.push(["newPageView", "/data"]);
+
+});
+  </script>
+
+</body>
+  </body>
+</html>
