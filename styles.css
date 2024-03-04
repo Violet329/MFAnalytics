@@ -2,6 +2,37 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   margin: 20px;
+  background-color: #f7f9fc;
+}
+
+h1 {
+  color: #08163c;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #08163c;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .switch {
@@ -9,12 +40,7 @@ body {
   display: inline-block;
   width: 60px;
   height: 34px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+  margin-bottom: 15px;
 }
 
 .slider {
@@ -60,119 +86,17 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-input[type="date"] {
-  padding: 5px;
-}
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 20px;
-}
 .startButt {
-  align-items: center;
   background-color: #0b65e3;
-  border: 0;
-  border-radius: 100px;
-  box-sizing: border-box;
-  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
   cursor: pointer;
-  display: inline-flex;
-  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto,
-    "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell,
-    "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 12px 20px;
   font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 20px;
-  max-width: 480px;
-  min-height: 40px;
-  min-width: 0px;
-  overflow: hidden;
-  padding: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: center;
-  touch-action: manipulation;
-  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-    box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-    color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  user-select: none;
-  -webkit-user-select: none;
-  vertical-align: middle;
+  transition: background-color 0.3s ease;
 }
 
 .startButt:hover {
   background-color: #0144a2;
-  color: #ffffff;
-}
-
-.in-box {
-  border: 0;
-  outline: 0;
-  color: #08163c;
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px,
-    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(0 0 0 / 0%) 0px 0px 0px 0px;
-  border-radius: 18px;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 400;
-  padding: 4px 8px;
-  min-height: 30px;
-  vertical-align: middle;
-  transition: background-color 0.24s, box-shadow 0.24s;
-  transition-property: background-color, box-shadow;
-  transition-duration: 0.24s, 0.24s;
-  transition-timing-function: ease, ease;
-  transition-delay: 0s, 0s;
-}
-.in-box:focus {
-  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(58 151 212 / 36%) 0px 0px 0px 2px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px;
-}
-:root {
-  --arrow-bg: #0b65e3;
-  --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
-  --option-bg: white;
-  --select-bg: rgba(255, 255, 255, 0.2);
-}
-* {
-  box-sizing: border-box;
-}
-/* <select> styles */
-#scriptSelector {
-  /* Reset */
-  appearance: none;
-  border: 0;
-  outline: 0;
-  border-radius: 15px;
-
-  font: inherit;
-  /* Personalize */
-  width: fit-content;
-  padding: 0.8rem 3rem 0.8rem 0.8rem;
-  background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
-    linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
-  color: #08163c;
-  /* border-radius: 0.15em; */
-  box-shadow: 0 0 0.8em 0 rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  /* Remove IE arrow */
-  &::-ms-expand {
-    display: none;
-  }
-  /* Remove focus outline */
-  &:focus {
-    outline: none;
-  }
-  /* <option> colors */
-  option {
-    color: inherit;
-    background-color: var(--option-bg);
-  }
 }
