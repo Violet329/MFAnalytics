@@ -59,6 +59,7 @@ async function runAnalytics() {
       method: "GET",
       headers: {
         Authorization: "Basic " + btoa(`${email}:${apiKey}`),
+        "Access-Control-Allow-Origin": "*"
       },
     });
 
