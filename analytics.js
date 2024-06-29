@@ -34,24 +34,24 @@ async function runAnalytics() {
     const toDate = document.getElementById("toDate").value;
     const script = document.getElementById("scriptSelector").value;
     const tagName = document.getElementById("tag_s").value;
- //   const corsAnywhere = "https://corsproxy.io/?";
+    const corsAnywhere = "https://corsproxy.io/?";
 
     // Construct API request URL based on the selected script
     let requestString;
     if (script === "clickError") {
-      requestString = `https://api-${region}.mouseflow.com/websites/${websiteId}/recordings?tags=click-error&fromdate=${fromDate}&todate=${toDate}`;
+      requestString = `${corsAnywhere}https://api-${region}.mouseflow.com/websites/${websiteId}/recordings?tags=click-error&fromdate=${fromDate}&todate=${toDate}`;
     } else if (script === "loginStats") {
-      requestString = `https://api-${region}.mouseflow.com/account/users/stats`;
+      requestString = `${corsAnywhere}https://api-${region}.mouseflow.com/account/users/stats`;
     } else if (script === "topCitiesCountries" || script === "referrerStats") {
-      requestString = `https://api-${region}.mouseflow.com/websites/${websiteId}/recordings?limit=10000&fromdate=${fromDate}&todate=${toDate}`;
+      requestString = `${corsAnywhere}https://api-${region}.mouseflow.com/websites/${websiteId}/recordings?limit=10000&fromdate=${fromDate}&todate=${toDate}`;
     } else if (script === "userCsv") {
-      requestString = `https://api-${region}.mouseflow.com/account/users/list`;
+      requestString = `${corsAnywhere}https://api-${region}.mouseflow.com/account/users/list`;
     } else if (script === "searchTag") {
-      requestString = `https://api-${region}.mouseflow.com/websites/${websiteId}/stats?tags=${tagName}&fromDate=${fromDate}&toDate=${toDate}`;
+      requestString = `${corsAnywhere}https://api-${region}.mouseflow.com/websites/${websiteId}/stats?tags=${tagName}&fromDate=${fromDate}&toDate=${toDate}`;
     } else if (script === "tagVar") {
-      requestString = `https://api-${region}.mouseflow.com/websites/${websiteId}/stats?fromDate=${fromDate}&toDate=${toDate}`;
+      requestString = `${corsAnywhere}https://api-${region}.mouseflow.com/websites/${websiteId}/stats?fromDate=${fromDate}&toDate=${toDate}`;
     } else if (script === "averageSessions") {
-      requestString = `https://api-${region}.mouseflow.com/account/usage-report`; //this endpoint is only available to the account owner, might need a hacky solution to get this data in case a subuser tries
+      requestString = `${corsAnywhere}https://api-${region}.mouseflow.com/account/usage-report`; //this endpoint is only available to the account owner, might need a hacky solution to get this data in case a subuser tries
     }
 
     // Make API request
@@ -59,7 +59,6 @@ async function runAnalytics() {
       method: "GET",
       headers: {
         Authorization: "Basic " + btoa(`${email}:${apiKey}`),
-        "Access-Control-Allow-Origin": "*"
       },
     });
 
@@ -84,7 +83,7 @@ async function runAnalytics() {
       const pageviewList = [];
 
       for (const id of clickErrorIds) {
-        const clickErrorPageViewsRequestString = `https://api-${region}.mouseflow.com/websites/${websiteId}/recordings/${id}`;
+        const clickErrorPageViewsRequestString = `${corsAnywhere}https://api-${region}.mouseflow.com/websites/${websiteId}/recordings/${id}`;
         const clickErrorPageViewsResponse = await fetch(
           clickErrorPageViewsRequestString,
           {
@@ -107,7 +106,7 @@ async function runAnalytics() {
         pageviewList.push(...clickErrorPageViews);
 
         for (const pvID of pageviewList) {
-          const pageViewDataRequestString = `https://api-${region}.mouseflow.com/websites/${websiteId}/recordings/${id}/pageviews/${pvID}/data`;
+          const pageViewDataRequestString = `${corsAnywhere}https://api-${region}.mouseflow.com/websites/${websiteId}/recordings/${id}/pageviews/${pvID}/data`;
           const pageViewDataResponse = await fetch(pageViewDataRequestString, {
             method: "GET",
             headers: {
@@ -299,7 +298,7 @@ async function runAnalytics() {
           .slice(0, limit);
       }
 
-      const requestString = `https://api-${region}.mouseflow.com/websites/${websiteId}/recordings?limit=10000&fromdate=${fromDate}&todate=${toDate}`;
+      const requestString = `${corsAnywhere}https://api-${region}.mouseflow.com/websites/${websiteId}/recordings?limit=10000&fromdate=${fromDate}&todate=${toDate}`;
       const tagVarResponse = await fetch(requestString, {
         method: "GET",
         headers: {
@@ -340,7 +339,7 @@ async function runAnalytics() {
         });
       }
     } else if (script === "searchTag") {
-      const requestStringF = `https://api-${region}.mouseflow.com/websites/${websiteId}/stats?fromDate=${fromDate}&toDate=${toDate}`;
+      const requestStringF = `${corsAnywhere}https://api-${region}.mouseflow.com/websites/${websiteId}/stats?fromDate=${fromDate}&toDate=${toDate}`;
       const reqTagS = await fetch(requestStringF, {
         method: "GET",
         headers: {
@@ -362,7 +361,7 @@ async function runAnalytics() {
       outputDiv.innerHTML += `<p>Average friction score of sessions with this tag: ${friction}</p>`;
 
       // Fetch and process page list
-      const requestStringTag = `https://api-${region}.mouseflow.com/websites/${websiteId}/pagelist?tags=${tagName}&fromDate=${fromDate}&toDate=${toDate}`;
+      const requestStringTag = `${corsAnywhere}https://api-${region}.mouseflow.com/websites/${websiteId}/pagelist?tags=${tagName}&fromDate=${fromDate}&toDate=${toDate}`;
       const reqTag = await fetch(requestStringTag, {
         method: "GET",
         headers: {
@@ -382,7 +381,7 @@ async function runAnalytics() {
     } else if (script === "averageSessions") {
       /* This is for mapping the website ids to website names
       
-      const requestStringF = `https://api-${region}.mouseflow.com/websites`;
+      const requestStringF = `${corsAnywhere}https://api-${region}.mouseflow.com/websites`;
       const req = await fetch(requestStringF, {
         method: "GET",
         headers: {
